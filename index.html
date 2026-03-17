@@ -1,0 +1,387 @@
+<!DOCTYPE html>  
+<html lang="hi">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">  
+    <title>UPPCL स्मार्ट कार्ड – EDD SEORAHI</title>  
+    <style>  
+        * {  
+            margin: 0;  
+            padding: 0;  
+            box-sizing: border-box;  
+        }  
+  
+        body {  
+            min-height: 100vh;  
+            background: radial-gradient(circle at 20% 20%, #0b0d1a, #010101 90%);  
+            display: flex;  
+            align-items: center;  
+            justify-content: center;  
+            font-family: 'Poppins', 'Mangal', 'Arial', sans-serif;  
+            padding: 16px;  
+            margin: 0;  
+        }  
+  
+        .clickable-card {  
+            display: block;  
+            max-width: 400px;  
+            width: 100%;  
+            text-decoration: none;  
+            color: inherit;  
+            outline: none;  
+            border-radius: 40px;  
+            padding: 5px;  
+            background: transparent;  
+            transition: transform 0.2s ease;  
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);  
+        }  
+  
+        .clickable-card:active {  
+            transform: scale(0.98);  
+        }  
+  
+        .neon-card {  
+            background: #0f111f;  
+            border-radius: 36px;  
+            padding: 24px 22px 28px;  
+            color: #eef5ff;  
+            position: relative;  
+            overflow: hidden;  
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.9), inset 0 0 15px rgba(0,255,255,0.2);  
+            border: 2px solid rgba(0, 255, 255, 0.15);  
+            backdrop-filter: blur(2px);  
+            z-index: 2;  
+        }  
+  
+        .neon-card::before {  
+            content: '';  
+            position: absolute;  
+            top: -2px;  
+            left: -2px;  
+            right: -2px;  
+            bottom: -2px;  
+            border-radius: 38px;  
+            padding: 3px;  
+            background: conic-gradient(  
+                from var(--angle),   
+                #00ffff,   
+                #ff00ff,   
+                #ffff00,   
+                #00ffaa,   
+                #ffaa00,   
+                #00ffff  
+            );  
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);  
+            -webkit-mask-composite: xor;  
+            mask-composite: exclude;  
+            animation: spin 4s linear infinite;  
+            z-index: -1;  
+            opacity: 0.9;  
+            filter: blur(1px) brightness(1.2);  
+        }  
+  
+        .neon-card::after {  
+            content: '';  
+            position: absolute;  
+            top: 0;  
+            left: 0;  
+            right: 0;  
+            bottom: 0;  
+            border-radius: 36px;  
+            box-shadow: inset 0 0 30px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.4);  
+            pointer-events: none;  
+            z-index: 1;  
+        }  
+  
+        @property --angle {  
+            syntax: '<angle>';  
+            inherits: false;  
+            initial-value: 0deg;  
+        }  
+  
+        @keyframes spin {  
+            from {  
+                --angle: 0deg;  
+            }  
+            to {  
+                --angle: 360deg;  
+            }  
+        }  
+  
+        .app-title {  
+            font-size: 1.9rem;  
+            font-weight: 700;  
+            letter-spacing: 1px;  
+            line-height: 1.2;  
+            text-shadow: 0 0 10px cyan;  
+            display: flex;  
+            align-items: center;  
+            gap: 10px;  
+        }  
+  
+        .app-title span {  
+            background: linear-gradient(45deg, cyan, magenta);  
+            -webkit-background-clip: text;  
+            background-clip: text;  
+            color: transparent;  
+            font-weight: 800;  
+        }  
+  
+        .tagline {  
+            font-size: 1.1rem;  
+            margin: 8px 0 18px 0;  
+            color: #aad0ff;  
+            border-left: 6px solid #0ff;  
+            padding-left: 16px;  
+            background: linear-gradient(90deg, rgba(0,255,255,0.1), transparent);  
+            border-radius: 0 4px 4px 0;  
+        }  
+  
+        .feature-box {  
+            background: rgba(0, 15, 30, 0.6);  
+            backdrop-filter: blur(4px);  
+            border-radius: 28px;  
+            padding: 18px 16px;  
+            margin: 18px 0;  
+            border: 1px solid rgba(0, 255, 255, 0.3);  
+            box-shadow: 0 0 15px rgba(0,255,255,0.2);  
+        }  
+  
+        .feature-item {  
+            display: flex;  
+            align-items: flex-start;  
+            gap: 12px;  
+            margin-bottom: 14px;  
+            font-size: 0.98rem;  
+            color: #cfecff;  
+        }  
+  
+        .feature-item:last-child {  
+            margin-bottom: 0;  
+        }  
+  
+        .feature-num {  
+            background: cyan;  
+            color: #000;  
+            width: 24px;  
+            height: 24px;  
+            border-radius: 50%;  
+            display: inline-flex;  
+            align-items: center;  
+            justify-content: center;  
+            font-weight: 900;  
+            font-size: 0.9rem;  
+            box-shadow: 0 0 12px cyan;  
+            flex-shrink: 0;  
+        }  
+  
+        .download-section {  
+            background: rgba(255, 0, 255, 0.1);  
+            border-radius: 28px;  
+            padding: 16px 18px;  
+            margin: 16px 0 14px;  
+            border: 1px dashed magenta;  
+            position: relative;  
+        }  
+  
+        .download-title {  
+            font-weight: 600;  
+            color: #ffb3ff;  
+            display: flex;  
+            align-items: center;  
+            gap: 8px;  
+            font-size: 1.1rem;  
+            margin-bottom: 12px;  
+        }  
+  
+        .step {  
+            display: flex;  
+            align-items: baseline;  
+            gap: 8px;  
+            font-size: 0.9rem;  
+            margin: 8px 0;  
+            color: #d6eaff;  
+        }  
+  
+        .step b {  
+            color: cyan;  
+            font-weight: 600;  
+        }  
+  
+        .play-icon {  
+            display: inline-block;  
+            background: #00ffaa;  
+            color: black;  
+            font-weight: bold;  
+            padding: 2px 12px;  
+            border-radius: 40px;  
+            font-size: 0.75rem;  
+            margin-left: 6px;  
+            box-shadow: 0 0 10px #0fa;  
+        }  
+  
+        .bill-info {  
+            background: linear-gradient(145deg, #120c24, #020214);  
+            padding: 16px;  
+            border-radius: 24px;  
+            margin-top: 20px;  
+            border-left: 8px solid #ffaa00;  
+            border-right: 1px solid rgba(255,170,0,0.4);  
+            font-size: 0.9rem;  
+        }  
+  
+        .bill-info p {  
+            margin: 6px 0;  
+            display: flex;  
+            align-items: center;  
+            gap: 8px;  
+        }  
+  
+        .negative-badge {  
+            background: #ff3366;  
+            color: white;  
+            border-radius: 50px;  
+            padding: 3px 14px;  
+            font-size: 0.8rem;  
+            font-weight: bold;  
+            display: inline-block;  
+            box-shadow: 0 0 15px #f3f;  
+        }  
+  
+        .rebate {  
+            background: gold;  
+            color: #000;  
+            font-weight: 800;  
+            border-radius: 20px;  
+            padding: 3px 12px;  
+            font-size: 0.8rem;  
+            margin-left: 6px;  
+        }  
+  
+        .slogan {  
+            text-align: center;  
+            margin-top: 24px;  
+            font-size: 1rem;  
+            font-weight: 400;  
+            color: #ffd966;  
+            border-top: 1px solid rgba(0,255,255,0.4);  
+            padding-top: 16px;  
+            letter-spacing: 1px;  
+            text-transform: uppercase;  
+            background: linear-gradient(90deg, transparent, cyan, transparent);  
+            background-clip: text;  
+            -webkit-background-clip: text;  
+            -webkit-text-fill-color: transparent;  
+            font-weight: 600;  
+        }  
+  
+        .department {  
+            font-size: 0.8rem;  
+            text-align: center;  
+            color: #aaa;  
+            margin-top: 6px;  
+            background: rgba(0,0,0,0.3);  
+            padding: 6px 12px;  
+            border-radius: 40px;  
+            backdrop-filter: blur(2px);  
+        }  
+  
+        .flex-row {  
+            display: flex;  
+            justify-content: space-between;  
+            align-items: center;  
+        }  
+  
+        .highlight {  
+            color: #ffd966;  
+            font-weight: 600;  
+            text-shadow: 0 0 8px orange;  
+        }  
+  
+        @media (max-width: 380px) {  
+            .app-title {  
+                font-size: 1.6rem;  
+            }  
+            .feature-item {  
+                font-size: 0.85rem;  
+            }  
+        }  
+    </style>  
+</head>  
+<body>  
+    <a href="https://play.google.com/store/apps/details?id=com.jio.uttarurja"   
+       target="_blank"   
+       rel="noopener noreferrer"   
+       class="clickable-card"  
+       onclick="event.stopPropagation();">  
+  
+        <div class="neon-card">  
+  
+            <div class="app-title">  
+                <span>UPPCL</span> SMART APP  
+            </div>  
+            <div class="tagline">  
+                ⚡ अपने बिजली खपत की निगरानी करें!  
+            </div>  
+  
+            <div class="feature-box">  
+                <div class="feature-item">  
+                    <span class="feature-num">1</span>  
+                    <span>मीटर रीडिंग, डिमांड खपत देखें</span>  
+                </div>  
+                <div class="feature-item">  
+                    <span class="feature-num">2</span>  
+                    <span>बकाया बिल देखें और भुगतान करें</span>  
+                </div>  
+                <div class="feature-item">  
+                    <span class="feature-num">3</span>  
+                    <span>लोड घटाने/बढ़ाने के लिए ऑनलाइन आवेदन</span>  
+                </div>  
+            </div>  
+  
+            <div class="download-section">  
+                <div class="download-title">  
+                    📲 डाउनलोड करें  
+                    <span class="play-icon">Google Play</span>  
+                </div>  
+                <div class="step">  
+                    <b>1.</b> Play Store से UPPCL SMART APP इंस्टॉल करें।  
+                </div>  
+                <div class="step">  
+                    <b>2.</b> SIGN UP के लिए लिंक मोबाइल नंबर पर OTP आएगा।  
+                </div>  
+                <div class="step">  
+                    <b>3.</b> रिचार्ज / पेमेंट : Pay Now → Account ID डालें।  
+                </div>  
+                <div style="font-size:0.8rem; margin-top:8px; background:#0000004d; padding:6px; border-radius:18px; text-align:center;">  
+                    ⚡ प्रीपेड/पोस्टपेड रीडिंग की दैनिक निगरानी करें  
+                </div>  
+            </div>  
+  
+            <div class="bill-info">  
+                <p>  
+                    <span class="negative-badge">Negative Balance</span>  
+                    <span style="flex:1;">= बिजली इस्तेमाल पर अदत्त राशि</span>  
+                </p>  
+                <p style="color:#ffcc99;">  
+                    💡 नेगेटिव बैलेंस + अगले माह का अनुमानित बिल जमा करने पर <strong class="rebate">2% रिवेट (छूट)</strong>  
+                </p>  
+                <p style="color:#aaffaa; font-size:0.85rem;">  
+                    ✅ अस्थाई रीमोट से बचने के लिए Current Balance Positive रखें।  
+                </p>  
+            </div>  
+  
+            <div class="slogan">  
+                "राष्ट्र हित में बिजली बचायें"  
+            </div>  
+            <div class="department">  
+                Ankur SEORAHI   
+            </div>  
+  
+            <div style="margin-top: 18px; text-align: center; font-size: 0.9rem; background: rgba(0,255,255,0.08); padding: 8px; border-radius: 28px;">  
+                ⚡ घर बैठे करें बिजली खपत की निगरानी — अभी क्लिक करें  
+            </div>  
+        </div>  
+    </a>  
+</body>  
+</html>
