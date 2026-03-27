@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>UPPCL सुरक्षा आदेश | विद्युत कार्य सुरक्षा नियम</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0c12 0%, #14181f 100%);
+            font-family: 'Inter', sans-serif;
+            padding: 1.5rem;
+            color: #e8eef2;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header - Dark with Gold */
+        .header-badge {
+            background: linear-gradient(115deg, #0a0f15 0%, #1a1f2a 100%);
+            border-radius: 1.8rem;
+            padding: 1.2rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 200, 70, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-badge::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,200,70,0.1) 0%, transparent 70%);
+            animation: rotateGlow 20s linear infinite;
+        }
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        .logo-icon {
+            font-size: 2.5rem;
+            color: #ffd966;
+            text-shadow: 0 0 10px rgba(255, 200, 70, 0.5);
+        }
+        .title-main h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd966, #ffb347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .title-main p {
+            color: #ffd966aa;
+            font-size: 0.8rem;
+        }
+        .warning-tag {
+            background: linear-gradient(135deg, #d93f21, #b32d12);
+            padding: 0.5rem 1.3rem;
+            border-radius: 40px;
+            font-weight: 800;
+            animation: pulseRed 1.5s infinite;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            color: white;
+            font-size: 0.9rem;
+            box-shadow: 0 0 15px rgba(217,63,33,0.5);
+        }
+        @keyframes pulseRed {
+            0% { box-shadow: 0 0 0 0 rgba(217,63,33,0.7);}
+            70% { box-shadow: 0 0 0 12px rgba(217,63,33,0);}
+            100% { box-shadow: 0 0 0 0 rgba(217,63,33,0);}
+        }
+
+        /* Live Status - Dark Glass */
+        .live-status {
+            background: rgba(20, 25, 35, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 0.7rem 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            gap: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 200, 70, 0.3);
+        }
+        .clock {
+            background: linear-gradient(135deg, #1e2a3a, #0f1a24);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            color: #ffd966;
+            font-family: monospace;
+            font-weight: bold;
+            border: 1px solid #ffd96655;
+        }
+
+        /* Social Share Buttons */
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .share-btn {
+            background: linear-gradient(135deg, #1e2a3a, #0f1a24);
+            border: 1px solid rgba(255, 200, 70, 0.4);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            color: #ffd966;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+        .share-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #2a3a4a, #1a2a34);
+            border-color: #ffd966;
+            box-shadow: 0 5px 20px rgba(255, 200, 70, 0.2);
+        }
+        .share-btn i {
+            font-size: 1.1rem;
+        }
+        .share-btn.whatsapp:hover i { color: #25D366; }
+        .share-btn.twitter:hover i { color: #1DA1F2; }
+        .share-btn.facebook:hover i { color: #1877F2; }
+        .share-btn.linkedin:hover i { color: #0077B5; }
+
+        /* Cards Grid */
+        .directives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Card with electric moving border */
+        .card {
+            background: linear-gradient(145deg, #11161f 0%, #0c1018 100%);
+            border-radius: 1.5rem;
+            padding: 1.4rem 1.6rem;
+            box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(255, 200, 70, 0.2);
+            overflow: hidden;
+        }
+        
+        /* Electric glowing border animation */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                #ffd966, #ffb347, #ff8c42, #ffd966, #ffb347, #ff8c42);
+            background-size: 300% 300%;
+            border-radius: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            animation: electricFlow 2s linear infinite;
+        }
+        
+        .card:hover::before {
+            opacity: 0.7;
+        }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(145deg, #11161f 0%, #0c1018 100%);
+            border-radius: 1.4rem;
+            z-index: 0;
+        }
+        
+        @keyframes electricFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .card > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.6);
+        }
+        .card:active {
+            transform: scale(0.98);
+        }
+        
+        /* Card Header - Deep Red Gradient */
+        .card-header {
+            background: linear-gradient(135deg, #8b1a1a 0%, #5e1212 50%, #3a0b0b 100%);
+            margin: -1.4rem -1.6rem 1rem -1.6rem;
+            padding: 0.8rem 1.6rem;
+            border-radius: 1.5rem 1.5rem 1rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #ffd966;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 217, 102, 0.3), transparent);
+            animation: headerShine 3s infinite;
+        }
+        
+        @keyframes headerShine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .card-header i {
+            font-size: 1.8rem;
+            color: #ffd966;
+            text-shadow: 0 0 5px rgba(255, 217, 102, 0.5);
+        }
+        
+        .card-header h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffd966;
+            letter-spacing: 0.5px;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .card p {
+            font-size: 0.9rem;
+            line-height: 1.45;
+            color: #cbd5e1;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        .why-badge {
+            margin-top: 14px;
+            font-size: 0.7rem;
+            background: rgba(255, 200, 70, 0.15);
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 30px;
+            color: #ffd966;
+            font-weight: 700;
+            border: 1px solid rgba(255, 200, 70, 0.3);
+        }
+        
+        .card:hover .why-badge {
+            background: rgba(255, 200, 70, 0.3);
+            color: #ffeb99;
+        }
+        
+        .click-hint {
+            font-size: 0.65rem;
+            color: #ffd966aa;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Shared By Footer on Card */
+        .card-footer {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 200, 70, 0.2);
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffd966aa;
+        }
+        
+        .card-footer i {
+            font-size: 0.7rem;
+            color: #ffd966;
+        }
+        
+        .card-footer span:first-child {
+            font-weight: 600;
+        }
+        
+        /* Modal - With Gradient Animation */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-card {
+            background: linear-gradient(135deg, #1a1f2a 0%, #0f141c 100%);
+            max-width: 650px;
+            width: 90%;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.6);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 200, 70, 0.4);
+            position: relative;
+        }
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+            animation: modalGradientGlow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes modalGradientGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 200, 70, 0.3), 0 0 0 0 rgba(255, 180, 70, 0.2);
+                border-color: rgba(255, 200, 70, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 20px 10px rgba(255, 200, 70, 0.4), 0 0 30px 15px rgba(255, 150, 50, 0.2);
+                border-color: rgba(255, 217, 102, 0.8);
+            }
+        }
+        
+        /* Inner content gradient animation */
+        .modal-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffd966, #ffb347, #ff8c42, #ffd966);
+            background-size: 300% 300%;
+            border-radius: 2rem;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            animation: modalBorderFlow 2s linear infinite;
+        }
+        .modal-overlay.active .modal-card::before {
+            opacity: 0.5;
+        }
+        @keyframes modalBorderFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #8b1a1a 0%, #5e1212 100%);
+            padding: 1.2rem 1.8rem;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ffd966;
+            position: relative;
+            overflow: hidden;
+        }
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 217, 102, 0.4), transparent);
+            animation: modalHeaderShine 3s infinite;
+        }
+        @keyframes modalHeaderShine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .modal-header h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            color: #ffd966;
+        }
+        .close-modal {
+            background: none;
+            border: none;
+            color: #ffd966;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .close-modal:hover {
+            transform: scale(1.1);
+            color: #ffaa66;
+        }
+        .modal-body {
+            padding: 1.8rem;
+            max-height: 65vh;
+            overflow-y: auto;
+            color: #e0e6ed;
+            background: linear-gradient(135deg, #1a1f2a 0%, #12171f 100%);
+        }
+        .modal-body h4 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
+            color: #ffd966;
+            border-left: 4px solid #ffd966;
+            padding-left: 12px;
+            background: linear-gradient(90deg, rgba(255, 217, 102, 0.1), transparent);
+        }
+        .modal-body p {
+            margin-bottom: 1rem;
+            line-height: 1.55;
+            color: #cbd5e1;
+        }
+        .example-box {
+            background: linear-gradient(135deg, rgba(255, 200, 70, 0.15), rgba(255, 150, 50, 0.05));
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            border-left: 5px solid #ffd966;
+            animation: exampleGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes exampleGlow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 200, 70, 0.2); }
+            100% { box-shadow: 0 0 10px 2px rgba(255, 200, 70, 0.3); }
+        }
+        .source {
+            font-size: 0.7rem;
+            color: #ffd966aa;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        .danger-note {
+            background: linear-gradient(135deg, rgba(217, 63, 33, 0.25), rgba(180, 45, 20, 0.15));
+            padding: 0.9rem;
+            border-radius: 1rem;
+            color: #ffaa88;
+            font-weight: 600;
+            border: 1px solid rgba(217, 63, 33, 0.4);
+            animation: dangerPulse 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes dangerPulse {
+            0% { border-color: rgba(217, 63, 33, 0.4); }
+            100% { border-color: rgba(255, 100, 50, 0.8); }
+        }
+        .modal-body::-webkit-scrollbar {
+            width: 5px;
+        }
+        .modal-body::-webkit-scrollbar-track {
+            background: #1e2a3a;
+            border-radius: 10px;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ffd966, #ffb347);
+            border-radius: 10px;
+        }
+        
+        .modal-source-footer {
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255, 200, 70, 0.3);
+            text-align: center;
+            font-size: 0.75rem;
+            color: #ffd966;
+        }
+
+        /* Main Footer - Created by Ankur with Gradient Animation */
+        .main-footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #0f141c, #0a0f15);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 200, 70, 0.3);
+            animation: footerGradient 2s ease-in-out infinite alternate;
+        }
+        @keyframes footerGradient {
+            0% {
+                box-shadow: 0 0 5px 0 rgba(255, 200, 70, 0.2);
+                border-color: rgba(255, 200, 70, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 20px 5px rgba(255, 200, 70, 0.4);
+                border-color: rgba(255, 217, 102, 0.7);
+            }
+        }
+        .main-footer p {
+            font-size: 1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ffd966, #ffb347, #ff8c42);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textShine 2s linear infinite;
+            background-size: 200% auto;
+        }
+        @keyframes textShine {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        .main-footer i {
+            color: #ffd966;
+            margin: 0 5px;
+        }
+        .main-footer .phone {
+            color: #ffd966;
+            font-family: monospace;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 700px) {
+            body { padding: 1rem; }
+            .card-header h3 { font-size: 1rem; }
+            .directives-grid { gap: 1.5rem; }
+            .social-share .share-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-badge scroll-reveal">
+        <div class="logo-area">
+            <i class="fas fa-bolt logo-icon"></i>
+            <div class="title-main">
+                <h1>⚡ अति आवश्यक सुरक्षा आदेश ⚡</h1>
+                <p>उत्तर प्रदेश पावर कॉरपोरेशन लिमिटेड (UPPCL)</p>
+            </div>
+        </div>
+        <div class="warning-tag"><i class="fas fa-gavel"></i> सेवा समाप्ति / Blacklist</div>
+    </div>
+
+    <div class="live-status scroll-reveal">
+        <span><i class="fas fa-shield-alt" style="color:#ffd966;"></i> सुरक्षा निगरानी सक्रिय | उच्चाधिकारी जुड़े</span>
+        <span class="clock" id="liveClock">--:-- IST</span>
+        <span><i class="fas fa-hand-pointer"></i> किसी भी कार्ड पर क्लिक करें → विस्तृत जानकारी</span>
+    </div>
+
+    <!-- Social Share Buttons -->
+    <div class="social-share scroll-reveal">
+        <button class="share-btn whatsapp" id="shareWhatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+        <button class="share-btn twitter" id="shareTwitter"><i class="fab fa-twitter"></i> Twitter</button>
+        <button class="share-btn facebook" id="shareFacebook"><i class="fab fa-facebook-f"></i> Facebook</button>
+        <button class="share-btn linkedin" id="shareLinkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</button>
+        <button class="share-btn" id="copyLink"><i class="fas fa-link"></i> कॉपी लिंक</button>
+    </div>
+
+    <div class="directives-grid" id="cardsGrid"></div>
+
+    <!-- Main Footer with Created by Ankur and Gradient Animation -->
+    <div class="main-footer scroll-reveal">
+        <p><i class="fas fa-code"></i> Created by Ankur <i class="fas fa-heart" style="color: #ff6666;"></i> <span class="phone">📞 8574583057</span></p>
+        <p style="font-size: 0.8rem; margin-top: 8px; background: none; color: #ffd966aa; -webkit-background-clip: unset; color: #ffd966aa;">⚡ सुरक्षा ही सर्वोपरि ⚡</p>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="safetyModal" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h2><i class="fas fa-exclamation-triangle"></i> <span id="modalTitle">सुरक्षा विवरण</span></h2>
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+    // Complete Data for all 10 cards
+    const modalData = [
+        { title: "नो किट – नो परमिट", icon: "fa-hard-hat", short: "बिना पूर्ण सुरक्षा किट (हेलमेट, ग्लव्स, सेफ्टी शूज़) के किसी भी लाइनमैन को शटडाउन परमिट जारी न किया जाए।", why: "यह नियम सुनिश्चित करता है कि कोई भी कर्मचारी बिना पूर्ण सुरक्षा उपकरणों के खतरनाक कार्य क्षेत्र में न जाए। हेलमेट सिर को, ग्लव्स हाथों को और सेफ्टी शूज़ पैरों को सुरक्षा देते हैं। विद्युत दुर्घटनाओं में 80% मौतें PPE न पहनने के कारण होती हैं।", consequences: "बिना किट के परमिट जारी होने पर लाइनमैन असुरक्षित स्थिति में काम करेगा। करंट लगने से मौत या स्थायी विकलांगता। साथ ही SSO की सेवा समाप्ति और FIR दर्ज होगी।", realExample: "मार्च 2021, बरेली जिले में लाइनमैन राजेश बिना ग्लव्स के 11KV लाइन पर काम कर रहे थे। करंट लगने से मौत। SSO की सेवा समाप्त।", source: "UPPCL सुरक्षा ऑडिट रिपोर्ट 2021" },
+        { title: "अनिवार्य PPE (ग्लव्स, हार्नेस)", icon: "fa-gloves", short: "11KV/33KV इंसुलेटेड ग्लव्स, सेफ्टी हेलमेट, फुल-बॉडी हार्नेस अनिवार्य।", why: "हाई वोल्टेज लाइनों पर काम करते समय इंसुलेटेड ग्लव्स 11KV/33KV तक के करंट को रोकते हैं। फुल-बॉडी हार्नेस ऊंचाई से गिरने से बचाता है।", consequences: "बिना PPE के कार्य करने पर गिरने से रीढ़ टूट सकती है या करंट लगने से मृत्यु।", realExample: "जनवरी 2022, गाजियाबाद में कर्मचारी बिना हार्नेस के पोल पर चढ़ा, गिरकर पैरालाइज्ड। ठेकेदार ब्लैकलिस्ट।", source: "UPPCL सुरक्षा प्रकोष्ठ" },
+        { title: "SSO की जिम्मेदारी (फोटो सबूत)", icon: "fa-user-check", short: "शटडाउन देने से पहले SSO फोटो से सुनिश्चित करें कि लाइन स्टाफ सुरक्षा किट में है।", why: "SSO अंतिम जिम्मेदार है। फोटो सबूत से पारदर्शिता आती है।", consequences: "बिना जांच परमिट देने पर दुर्घटना में SSO पर हत्या का मामला।", realExample: "अगस्त 2023, मेरठ में SSO ने बिना फोटो परमिट दिया, लाइनमैन बिना हेलमेट पकड़ा गया, SSO निलंबित।", source: "UPPCL मेरठ जोन" },
+        { title: "डिस्चार्ज रॉड / अर्थिंग", icon: "fa-bolt", short: "लाइन पर चढ़ने से पहले अर्थिंग अनिवार्य।", why: "प्रेरित वोल्टेज या बैकफीड से करंट आ सकता है। अर्थिंग सुरक्षा सुनिश्चित करती है।", consequences: "बिना अर्थिंग करंट लगने से मौत।", realExample: "2019, लखनऊ में अर्थिंग न करने से लाइनमैन को करंट, हाथ कटवाना पड़ा।", source: "UPPCL तकनीकी जांच" },
+        { title: "दोषपूर्ण उपकरण प्रतिबंध", icon: "fa-tools", short: "फटे दस्ताने, खराब बेल्ट का उपयोग प्रतिबंधित।", why: "क्षतिग्रस्त PPE इन्सुलेशन विफल करता है।", consequences: "फटे ग्लव्स से करंट लगना, खराब बेल्ट टूटना।", realExample: "कानपुर, 2020: फटे ग्लव्स से करंट लगा, हाथ झुलसे। स्टोर कीपर बर्खास्त।", source: "UPPCL कानपुर" },
+        { title: "नशे में कार्य प्रतिबंधित", icon: "fa-wine-bottle", short: "नशे की हालत में कार्य वर्जित।", why: "नशे में रिफ्लेक्स धीमा, निर्णय क्षमता प्रभावित।", consequences: "गलत फेज कटिंग, पोल से गिरना, मौत।", realExample: "अलीगढ़, 2018: शराब पीकर पोल पर चढ़ा, गिरकर मौत। सेवा समाप्त।", source: "UPPCL दुर्घटना जांच" },
+        { title: "T&P सुरक्षा रजिस्टर", icon: "fa-registered", short: "रजिस्टर में किट प्राप्ति का विवरण अनिवार्य।", why: "ट्रैकिंग से जवाबदेही तय होती है।", consequences: "रजिस्टर गड़बड़ी से असुरक्षित कार्य।", realExample: "वाराणसी, 2022: फर्जी हस्ताक्षर, 3 लाइनमैन बिना ग्लव्स, SSO सस्पेंड।", source: "UPPCL वाराणसी" },
+        { title: "आकस्मिक निरीक्षण", icon: "fa-eye", short: "बिना किट पाए जाने पर Termination।", why: "सख्त दंड से अनुपालन सुनिश्चित।", consequences: "नौकरी जाने के साथ ब्लैकलिस्ट।", realExample: "सहारनपुर, 2023: 2 लाइनमैन बिना किट पकड़े, SSO समेत सेवा समाप्त।", source: "UPPCL हेडक्वार्टर" },
+        { title: "पहले सुरक्षा, फिर कार्य", icon: "fa-heartbeat", short: "सुरक्षा सिद्धांत का हर हाल में पालन।", why: "यह मूल मंत्र दुर्घटना रोकता है।", consequences: "अनदेखी से जल्दबाजी, अर्थिंग छोड़ना, मौत।", realExample: "2017, गोरखपुर: अर्थिंग न करने से करंट लगा, मौत।", source: "UPPCL सुरक्षा पुस्तिका" },
+        { title: "फोटो अनिवार्य (09:00 AM)", icon: "fa-camera-retro", short: "प्रतिदिन सुरक्षा किट फोटो ग्रुप में साझा करें।", why: "डिजिटल जवाबदेही।", consequences: "फोटो न करने पर SSO पर कार्रवाई।", realExample: "फरवरी 2024, मुरादाबाद: SSO ने फोटो नहीं डाली, 4 लाइनमैन बिना ग्लव्स, SSO निलंबित।", source: "UPPCL मुरादाबाद" }
+    ];
+
+    const gridContainer = document.getElementById('cardsGrid');
+    
+    function buildCards() {
+        gridContainer.innerHTML = '';
+        modalData.forEach((data, idx) => {
+            const card = document.createElement('div');
+            card.className = 'card scroll-reveal';
+            card.setAttribute('data-idx', idx);
+            card.innerHTML = `
+                <div class="card-header">
+                    <i class="fas ${data.icon}"></i>
+                    <h3>${data.title}</h3>
+                </div>
+                <p>${data.short}</p>
+                <div class="why-badge"><i class="fas fa-question-circle"></i> क्यों जरूरी? क्लिक करें</div>
+                <div class="click-hint"><i class="fas fa-mouse-pointer"></i> विस्तार से जानें</div>
+                <div class="card-footer">
+                    <span><i class="fas fa-share-alt"></i> Shared by Ankur</span>
+                    <span><i class="fas fa-database"></i> Source: UPPCL</span>
+                </div>
+            `;
+            card.addEventListener('click', () => openModal(idx));
+            gridContainer.appendChild(card);
+        });
+    }
+
+    const modal = document.getElementById('safetyModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    function openModal(index) {
+        const data = modalData[index];
+        modalTitle.innerHTML = `<i class="fas ${data.icon}"></i> ${data.title}`;
+        modalBody.innerHTML = `
+            <div>
+                <h4><i class="fas fa-shield-heart"></i> ❓ यह नियम क्यों अनिवार्य है?</h4>
+                <p>${data.why}</p>
+                <h4><i class="fas fa-skull-crossbones"></i> ⚠️ ऐसा न करने पर क्या दिक्कत?</h4>
+                <div class="danger-note"><i class="fas fa-bolt"></i> ${data.consequences}</div>
+                <h4><i class="fas fa-tragedy"></i> 📌 सच्चा उदाहरण</h4>
+                <div class="example-box">
+                    <i class="fas fa-newspaper"></i> ${data.realExample}
+                    <div class="source"><i class="fas fa-database"></i> स्रोत: ${data.source}</div>
+                </div>
+                <div class="modal-source-footer">
+                    <i class="fas fa-share-alt"></i> Shared by Ankur | <i class="fas fa-database"></i> Source: UPPCL
+                </div>
+            </div>
+        `;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModalFunc() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModalFunc);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModalFunc(); });
+
+    // Live Clock
+    function updateClock() {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        document.getElementById('liveClock').innerHTML = `<i class="far fa-clock"></i> ${timeStr}`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Social Share Functions
+    const pageUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent("UPPCL सुरक्षा आदेश | विद्युत कार्य सुरक्षा नियम");
+    
+    document.getElementById('shareWhatsapp').addEventListener('click', () => {
+        window.open(`https://wa.me/?text=${pageTitle}%20-%20${pageUrl}`, '_blank');
+    });
+    document.getElementById('shareTwitter').addEventListener('click', () => {
+        window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`, '_blank');
+    });
+    document.getElementById('shareFacebook').addEventListener('click', () => {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, '_blank');
+    });
+    document.getElementById('shareLinkedin').addEventListener('click', () => {
+        window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`, '_blank');
+    });
+    document.getElementById('copyLink').addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert('✅ लिंक कॉपी हो गया! अब आप इसे कहीं भी शेयर कर सकते हैं।');
+        });
+    });
+
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('revealed'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.1 });
+    
+    buildCards();
+    setTimeout(() => { document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el)); }, 100);
+</script>
+</body>
+</html>
